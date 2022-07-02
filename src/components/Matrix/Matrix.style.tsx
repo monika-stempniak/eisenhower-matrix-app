@@ -47,7 +47,7 @@ export const LayoutContainer = styled.div`
   width: 100%;
 `;
 
-export const TileWrapper = styled.section<{ priority: number }>`
+export const TileWrapper = styled.section<{ priority: Priority }>`
   background-color: ${({ theme, priority }) => theme[`matrix_${priority}`]};
   padding: ${`${PADDING}px`};
   position: relative;

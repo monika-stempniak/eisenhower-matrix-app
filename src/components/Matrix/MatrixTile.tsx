@@ -1,22 +1,17 @@
-import { TodoType } from '../../utils/types';
 import { TileWrapper, TileTitle } from './Matrix.style';
 import { Todos } from '../Todos/Todos';
+import { Priority } from '../../utils/types';
 
 type MatrixTileProps = {
-  priority: number;
+  priority: Priority;
   title: string;
-  todos: TodoType[];
 };
 
-export const MatrixTile: React.FC<MatrixTileProps> = ({
-  priority,
-  title,
-  todos,
-}) => {
+export const MatrixTile: React.FC<MatrixTileProps> = ({ priority, title }) => {
   return (
-    <TileWrapper key={priority} priority={priority}>
+    <TileWrapper priority={priority}>
       <TileTitle priority={priority}>{title}</TileTitle>
-      <Todos todos={todos} />
+      <Todos priority={priority} />
     </TileWrapper>
   );
 };
