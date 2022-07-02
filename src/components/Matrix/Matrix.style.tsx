@@ -1,25 +1,26 @@
 import styled from 'styled-components';
-import { MatrixCorner } from '../../utils/constants';
+import { Priority } from '../../utils/types';
 
 const GAP = 10;
 const PADDING = 2 * GAP;
 
-const getTitlePosition = (corner: MatrixCorner) => {
-  switch (corner) {
-    case MatrixCorner.TOP:
+const getTitlePositionStyle = (priority: Priority) => {
+  switch (priority) {
+    case Priority.UrgentImportant:
+    case Priority.NotUrgentImportant:
     default:
       return {
         top: `-${PADDING}px`,
         left: '50%',
         transform: 'translate(-50%, -50%)',
       };
-    case MatrixCorner.TOP_LEFT:
+    case Priority.UrgentNotImportant:
       return {
         top: '-50%',
         left: `-${PADDING}px`,
         transform: 'translate(-50%, -50%) rotate(270deg)',
       };
-    case MatrixCorner.BOTTOM_LEFT:
+    case Priority.NotUrgentNotImportant:
       return {
         top: '50%',
         left: `calc(-100% - ${GAP + PADDING}px)`,
@@ -28,10 +29,13 @@ const getTitlePosition = (corner: MatrixCorner) => {
   }
 };
 
-export const LayoutWrapper = styled.div`
+export const LayoutWrapper = styled.main`
   background-color: ${({ theme }) => theme.backgroundColor};
   padding: 40px;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LayoutContainer = styled.div`
@@ -39,18 +43,21 @@ export const LayoutContainer = styled.div`
   gap: ${`${GAP}px`};
   grid-template-columns: 50% 50%;
   grid-template-rows: 40vh 40vh;
+  max-width: 1000px;
+  width: 100%;
 `;
 
-export const ItemWrapper = styled.div<{ priority: number }>`
+export const TileWrapper = styled.section<{ priority: number }>`
   background-color: ${({ theme, priority }) => theme[`matrix_${priority}`]};
   padding: ${`${PADDING}px`};
   position: relative;
   border-radius: 10px;
 `;
 
-export const ItemTitle = styled.div<{ corner: MatrixCorner }>`
+export const TileTitle = styled.h2<{ priority: Priority }>`
   position: absolute;
-  ${({ corner }) => getTitlePosition(corner)};
+  ${({ priority }) => getTitlePositionStyle(priority)};
   text-transform: uppercase;
-  font-weight: bold;
+  font-size: 16px;
+  margin: 0;
 `;

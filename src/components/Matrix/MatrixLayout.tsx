@@ -1,20 +1,53 @@
 import { MATRIX_SETTINGS } from '../../utils/constants';
-import { MatrixItem } from './MatrixItem';
+import { MatrixTile } from './MatrixTile';
 import { LayoutWrapper, LayoutContainer } from './Matrix.style';
 
-export function MatrixLayout() {
+const TODOS = [
+  {
+    title: 'urgent',
+    priority: 1,
+    comment: 'Lorem ipsum',
+    deadline: new Date(),
+  },
+  {
+    title: 'important',
+    priority: 2,
+    comment: 'Lorem ipsum',
+    deadline: new Date(),
+  },
+  {
+    title: 'urgent...',
+    priority: 1,
+    comment: 'Lorem ipsum...',
+    deadline: new Date(),
+  },
+  {
+    title: 'not-important',
+    priority: 3,
+    comment: 'Lorem ipsum',
+    deadline: new Date(),
+  },
+  {
+    title: 'not-urgent',
+    priority: 4,
+    comment: 'Lorem ipsum',
+    deadline: new Date(),
+  },
+];
+
+export const MatrixLayout: React.FC = () => {
   return (
     <LayoutWrapper>
       <LayoutContainer>
-        {MATRIX_SETTINGS.map((el) => (
-          <MatrixItem
-            key={el.priority}
-            priority={el.priority}
-            title={el.title}
-            position={el.position}
+        {MATRIX_SETTINGS.map(({ priority, title }) => (
+          <MatrixTile
+            key={title}
+            priority={priority}
+            title={title}
+            todos={TODOS.filter((todo) => todo.priority === priority)}
           />
         ))}
       </LayoutContainer>
     </LayoutWrapper>
   );
-}
+};

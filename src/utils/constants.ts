@@ -1,28 +1,20 @@
-export enum MatrixCorner {
-  TOP = 'top',
-  TOP_LEFT = 'top-left',
-  BOTTOM_LEFT = 'bottom-left',
-}
+import { Priority } from './types';
 
 export const MATRIX_SETTINGS = [
   {
-    priority: 1,
+    priority: Priority.UrgentImportant,
     title: 'urgent',
-    position: MatrixCorner.TOP,
   },
   {
-    priority: 2,
+    priority: Priority.NotUrgentImportant,
     title: 'not urgent',
-    position: MatrixCorner.TOP,
   },
   {
-    priority: 3,
+    priority: Priority.UrgentNotImportant,
     title: 'important',
-    position: MatrixCorner.TOP_LEFT,
   },
   {
-    priority: 4,
+    priority: Priority.NotUrgentNotImportant,
     title: 'not important',
-    position: MatrixCorner.BOTTOM_LEFT,
   },
 ];
