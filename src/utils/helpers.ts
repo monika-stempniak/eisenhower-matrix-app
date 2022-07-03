@@ -45,3 +45,17 @@ export const reorderDndMultiColumn = (
     ...destinationResult,
   ];
 };
+
+export const validateErrors = (todo: TodoType) => {
+  const errors: Record<string, string> = {};
+
+  if (todo.priority < 1) {
+    errors.priority = 'Priority is required';
+  }
+
+  if (todo.title === '') {
+    errors.title = 'Title is required';
+  }
+
+  return errors;
+};
