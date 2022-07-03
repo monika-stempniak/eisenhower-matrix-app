@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Form } from 'semantic-ui-react';
 
+export const TodosContainer = styled.div`
+  height: '100%';
+  overflowy: 'auto';
+`;
+
 export const TodoContainer = styled.li`
   margin-bottom: 16px;
 `;
@@ -21,6 +26,11 @@ export const TodoText = styled.p`
   font-size: 12px;
 `;
 
+export const TodoDate = styled(TodoText)`
+  padding-bottom: 5px;
+  text-decoration: underline;
+`;
+
 export const TodoButton = styled(Form.Button)`
   & button.ui {
     background-color: ${({ theme }) => theme.button};
@@ -29,4 +39,10 @@ export const TodoButton = styled(Form.Button)`
       background-color: ${({ theme }) => theme.buttonHover};
     }
   }
+`;
+
+export const DeleteIcon = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;

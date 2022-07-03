@@ -2,12 +2,51 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { TodoType } from '../utils/types';
 
+const MOCKED_TODOS = [
+  {
+    id: '1aa',
+    priority: 1,
+    title: 'urgent',
+    comment:
+      'Lorem ipsum at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan',
+    deadline: new Date(),
+  },
+  {
+    id: '2ab',
+    priority: 2,
+    title: 'important',
+    comment: '',
+    deadline: new Date(),
+  },
+  {
+    id: '2ac',
+    priority: 1,
+    title: 'urgent...',
+    comment: 'Lorem ipsum elit scelerisque mauris pellentesque pulvinar',
+    deadline: undefined,
+  },
+  {
+    id: '4ad',
+    priority: 3,
+    title: 'not-important',
+    comment: 'Lorem ipsum phasellus faucibus scelerisque',
+    deadline: new Date(),
+  },
+  {
+    id: '5ae',
+    priority: 4,
+    title: 'not-urgent',
+    comment: 'Lorem ipsum...',
+    deadline: new Date(),
+  },
+];
+
 export interface TodosState {
   todos: TodoType[];
 }
 
 const initialState: TodosState = {
-  todos: [],
+  todos: MOCKED_TODOS,
 };
 
 export const todosSlice = createSlice({
@@ -17,9 +56,12 @@ export const todosSlice = createSlice({
     updateTodos: (state: TodosState, action: PayloadAction<TodoType>) => {
       state.todos = [...state.todos, action.payload];
     },
+    deleteTodo: (state: TodosState, action: PayloadAction<string>) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
   },
 });
 
-export const { updateTodos } = todosSlice.actions;
+export const { updateTodos, deleteTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;

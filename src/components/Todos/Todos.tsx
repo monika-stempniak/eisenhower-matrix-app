@@ -3,40 +3,7 @@ import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';
 import { Priority } from '../../utils/types';
 import { Todo } from '../Todos/Todo';
-
-const TODOS = [
-  {
-    priority: 1,
-    title: 'urgent',
-    comment:
-      'Lorem ipsum at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan',
-    deadline: new Date(),
-  },
-  {
-    priority: 2,
-    title: 'important',
-    comment: '',
-    deadline: new Date(),
-  },
-  {
-    priority: 1,
-    title: 'urgent...',
-    comment: 'Lorem ipsum elit scelerisque mauris pellentesque pulvinar',
-    deadline: undefined,
-  },
-  {
-    priority: 3,
-    title: 'not-important',
-    comment: 'Lorem ipsum phasellus faucibus scelerisque',
-    deadline: new Date(),
-  },
-  {
-    priority: 4,
-    title: 'not-urgent',
-    comment: 'Lorem ipsum...',
-    deadline: new Date(),
-  },
-];
+import { TodosContainer } from './Todos.style';
 
 type TodosProps = {
   priority: Priority;
@@ -46,14 +13,14 @@ export const Todos: React.FC<TodosProps> = ({ priority }) => {
   const todos = useSelector((state: RootState) => state.todos.todos);
 
   return (
-    <div style={{ height: '100%', overflowY: 'auto' }}>
+    <TodosContainer>
       <ul>
-        {[...TODOS, ...todos]
+        {todos
           .filter((todo) => todo.priority === priority)
           .map((todo) => (
-            <Todo key={`${todo.priority}-${todo.title}`} todo={todo} />
+            <Todo key={todo.id} todo={todo} />
           ))}
       </ul>
-    </div>
+    </TodosContainer>
   );
 };

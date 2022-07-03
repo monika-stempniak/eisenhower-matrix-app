@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
@@ -18,8 +18,9 @@ type AddTodoProps = {
 };
 
 export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
+  const id = useId();
   const dispatch = useDispatch();
-  const [newTodo, setNewTodo] = useState<TodoType>(defaultTodo);
+  const [newTodo, setNewTodo] = useState<TodoType>({ id, ...defaultTodo });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

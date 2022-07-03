@@ -6,6 +6,7 @@ export enum Priority {
 }
 
 export type TodoType = {
+  id: string;
   priority: Priority;
   title: string;
   comment?: string;

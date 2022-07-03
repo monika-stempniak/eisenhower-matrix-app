@@ -1,6 +1,11 @@
+import { useDispatch } from 'react-redux';
+import { deleteTodo } from '../../redux/todosSlice';
+
 import { Priority, TodoType } from '../../utils/types';
 import {
+  DeleteIcon,
   TodoContainer,
+  TodoDate,
   TodoText,
   TodoTitle,
   TodoTitleContainer,
@@ -11,17 +16,23 @@ type TodoProps = {
 };
 
 export const Todo: React.FC<TodoProps> = ({ todo }) => {
-  const { priority, title, comment, deadline } = todo;
+  const { id, priority, title, comment, deadline } = todo;
+
+  const dispatch = useDispatch();
+
   return (
     <TodoContainer>
       <TodoTitleContainer>
         <TodoTitle>{title}</TodoTitle>
-        {deadline &&
-          (priority === Priority.UrgentImportant ||
-            priority === Priority.UrgentNotImportant) && (
-            <TodoText>{deadline.toDateString()}</TodoText>
-          )}
+        <DeleteIcon onClick={() => dispatch(deleteTodo(id))}>
+          &#10006;
+        </DeleteIcon>
       </TodoTitleContainer>
+      {deadline &&
+        (priority === Priority.UrgentImportant ||
+          priority === Priority.UrgentNotImportant) && (
+          <TodoDate>deadline: {deadline.toDateString()}</TodoDate>
+        )}
       <TodoText>{comment}</TodoText>
     </TodoContainer>
   );
