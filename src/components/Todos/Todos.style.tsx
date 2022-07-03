@@ -31,18 +31,20 @@ export const TodoTitleContainer = styled.div`
   margin-bottom: 8px;
 `;
 
-export const TodoTitle = styled.h3`
+export const TodoTitle = styled.h3<{ done: boolean }>`
   font-size: 16px;
+  text-decoration: ${({ done }) => (done ? 'line-through' : 'none')};
 `;
 
-export const TodoText = styled.p`
+export const TodoText = styled.p<{ done: boolean }>`
   font-style: italic;
   font-size: 12px;
+  text-decoration: ${({ done }) => (done ? 'line-through' : 'none')};
 `;
 
-export const TodoDate = styled(TodoText)`
+export const TodoDate = styled(TodoText)<{ done: boolean }>`
   padding-bottom: 5px;
-  text-decoration: underline;
+  text-decoration: ${({ done }) => (done ? 'line-through' : 'underline')};
 `;
 
 export const TodoButton = styled(Form.Button)`

@@ -12,4 +12,5 @@ export type TodoType = {
   comment?: string;
   deadline?: string;
   labels: string[];
+  done: boolean;
 };

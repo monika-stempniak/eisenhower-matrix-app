@@ -11,8 +11,9 @@ const MOCKED_TODOS = [
     title: 'urgent',
     comment:
       'Lorem ipsum at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan',
-    deadline: '25 listopad 2022',
+    deadline: '25-11-2022 12:00:00',
     labels: ['some tag', 'some label'],
+    done: false,
   },
   {
     id: '2ab',
@@ -21,6 +22,7 @@ const MOCKED_TODOS = [
     comment: '',
     deadline: '',
     labels: ['some label'],
+    done: false,
   },
   {
     id: '2ac',
@@ -29,6 +31,7 @@ const MOCKED_TODOS = [
     comment: 'Lorem ipsum elit scelerisque mauris pellentesque pulvinar',
     deadline: '',
     labels: ['some tag', 'some label'],
+    done: true,
   },
   {
     id: '4ad',
@@ -37,6 +40,7 @@ const MOCKED_TODOS = [
     comment: 'Lorem ipsum phasellus faucibus scelerisque',
     deadline: '',
     labels: [],
+    done: false,
   },
   {
     id: '5ae',
@@ -45,6 +49,7 @@ const MOCKED_TODOS = [
     comment: 'Lorem ipsum...',
     deadline: '',
     labels: [],
+    done: false,
   },
 ];
 
@@ -67,6 +72,14 @@ export const todosSlice = createSlice({
     },
     deleteTodo: (state: TodosState, action: PayloadAction<string>) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+    },
+    resolveTodo: (state: TodosState, action: PayloadAction<string>) => {
+      state.todos = state.todos.map((todo) => {
+        if (todo.id === action.payload) {
+          return { ...todo, done: !todo.done };
+        }
+        return todo;
+      });
     },
     updateAllTodos: (state: TodosState, action: PayloadAction<TodoType[]>) => {
       state.todos = action.payload;
@@ -99,6 +112,7 @@ export const selectTodos = (state: RootState): TodoType[] => {
 export const {
   addTodo,
   deleteTodo,
+  resolveTodo,
   updateAllTodos,
   updateActiveLabels,
   resetActiveLabels,
