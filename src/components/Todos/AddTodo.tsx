@@ -15,6 +15,7 @@ const defaultTodo = {
   title: '',
   comment: '',
   deadline: '',
+  labels: [],
 };
 
 type AddTodoProps = {
@@ -37,7 +38,6 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
   };
 
   const handleDateChange = (date: Date) => {
-    console.log(date);
     setNewTodo((prevTodo) => ({
       ...prevTodo,
       deadline: format(date, DATE_FORMAT),
@@ -45,8 +45,10 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
   };
 
   const handleAddTodo = () => {
+    const labels = newTodo.labels ?? [];
+    const uniqLabels = new Set(...labels);
+    dispatch(addTodo({ ...newTodo, labels: Array.from(uniqLabels) }));
     openModal(false);
-    dispatch(addTodo(newTodo));
   };
 
   return (
@@ -75,6 +77,13 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
         placeholder="Add comment..."
         name="comment"
         value={newTodo.comment}
+        onChange={handleChange}
+      />
+      <Form.TextArea
+        label="Labels"
+        placeholder="Add labels separated by commas..."
+        name="labels"
+        value={newTodo.labels.join(', ')}
         onChange={handleChange}
       />
       <DatePickerContainer>

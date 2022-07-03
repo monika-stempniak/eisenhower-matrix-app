@@ -7,8 +7,7 @@ import {
   DropResult,
 } from 'react-beautiful-dnd';
 
-import type { RootState } from '../../redux/store';
-import { updateAllTodos } from '../../redux/todosSlice';
+import { selectTodos, updateAllTodos } from '../../redux/todosSlice';
 import { MATRIX_SETTINGS } from '../../utils/constants';
 import { MatrixTile } from './MatrixTile';
 import { LayoutWrapper, LayoutContainer } from './Matrix.style';
@@ -16,7 +15,7 @@ import { reorderDndMultiColumn } from '../../utils/helpers';
 
 export const MatrixLayout: React.FC = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.todos.todos);
+  const todos = useSelector(selectTodos);
 
   const handleOnDragEnd = useCallback(
     (result: DropResult) => {

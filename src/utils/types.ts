@@ -11,4 +11,5 @@ export type TodoType = {
   title: string;
   comment?: string;
   deadline?: string;
+  labels: string[];
 };

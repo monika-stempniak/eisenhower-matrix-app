@@ -6,6 +6,8 @@ import {
   DeleteIcon,
   TodoContainer,
   TodoDate,
+  TodoLabel,
+  TodoLabels,
   TodoText,
   TodoTitle,
   TodoTitleContainer,
@@ -16,7 +18,7 @@ type TodoProps = {
 };
 
 export const Todo: React.FC<TodoProps> = ({ todo }) => {
-  const { id, priority, title, comment, deadline } = todo;
+  const { id, priority, title, comment, deadline, labels } = todo;
 
   const dispatch = useDispatch();
 
@@ -28,12 +30,22 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
           &#10006;
         </DeleteIcon>
       </TodoTitleContainer>
+
       {deadline &&
         (priority === Priority.UrgentImportant ||
           priority === Priority.UrgentNotImportant) && (
           <TodoDate>deadline: {deadline}</TodoDate>
         )}
-      <TodoText>{comment}</TodoText>
+
+      {comment && <TodoText>{comment}</TodoText>}
+
+      {labels && (
+        <TodoLabels>
+          {labels.map((label) => (
+            <TodoLabel key={label}>{label}</TodoLabel>
+          ))}
+        </TodoLabels>
+      )}
     </TodoContainer>
   );
 };

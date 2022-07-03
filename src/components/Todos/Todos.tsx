@@ -7,9 +7,11 @@ import {
 } from 'react-beautiful-dnd';
 
 import type { RootState } from '../../redux/store';
-import { Priority } from '../../utils/types';
+import { Priority, TodoType } from '../../utils/types';
 import { Todo } from '../Todos/Todo';
 import { TodosContainer, TodoWrapper } from './Todos.style';
+import { selectTodos } from '../../redux/todosSlice';
+import { useMemo } from 'react';
 
 type TodosProps = {
   priority: Priority;
@@ -20,8 +22,11 @@ export const Todos: React.FC<TodosProps> = ({
   priority,
   droppableProvided,
 }) => {
-  const todosPerPriority = useSelector((state: RootState) =>
-    state.todos.todos.filter((todo) => todo.priority === priority)
+  const todos = useSelector(selectTodos);
+
+  const todosPerPriority = useMemo(
+    () => todos.filter((todo) => todo.priority === priority),
+    [todos, priority]
   );
 
   return (

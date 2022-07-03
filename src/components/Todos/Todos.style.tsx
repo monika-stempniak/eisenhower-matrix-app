@@ -15,8 +15,8 @@ export const TodoWrapper = styled.div<{
     props.isDragging &&
     css`
       background: ${({ theme }) => theme.lightBeige};
-      border-radius: 5px;
-      padding-left: 5px;
+      border-radius: 4px;
+      padding-left: 4px;
     `}
 `;
 
@@ -47,10 +47,11 @@ export const TodoDate = styled(TodoText)`
 
 export const TodoButton = styled(Form.Button)`
   & button.ui {
-    background-color: ${({ theme }) => theme.button};
+    background-color: ${({ theme }) => theme.greyBrown};
 
     &:hover {
-      background-color: ${({ theme }) => theme.buttonHover};
+      background-color: ${({ theme }) => theme.brown};
+      color: ${({ theme }) => theme.light};
     }
   }
 `;
@@ -63,4 +64,15 @@ export const DeleteIcon = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const TodoLabels = styled.div``;
+
+export const TodoLabel = styled.span`
+  background-color: ${({ theme }) => theme.brown};
+  color: ${({ theme }) => theme.light};
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin-right: 4px;
+  font-size: 10px;
 `;
