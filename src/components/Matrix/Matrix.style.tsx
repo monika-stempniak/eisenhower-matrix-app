@@ -53,6 +53,7 @@ export const TileWrapper = styled.section<{ priority: Priority }>`
   padding: ${`${PADDING}px`};
   position: relative;
   border-radius: 10px;
+  height: 100%;
 `;
 
 export const TileTitle = styled.h2<{ priority: Priority }>`

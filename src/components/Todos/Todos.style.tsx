@@ -1,9 +1,23 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Form } from 'semantic-ui-react';
+import { Priority } from '../../utils/types';
 
 export const TodosContainer = styled.div`
   height: '100%';
   overflowy: 'auto';
+`;
+
+export const TodoWrapper = styled.div<{
+  isDragging: boolean;
+  priority: Priority;
+}>`
+  ${(props) =>
+    props.isDragging &&
+    css`
+      background: ${({ theme }) => theme[`matrix_${props.priority}`]};
+      border-radius: 5px;
+      padding-left: 10px;
+    `}
 `;
 
 export const TodoContainer = styled.li`

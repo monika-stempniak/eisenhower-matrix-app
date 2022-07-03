@@ -2,7 +2,7 @@ import React, { useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 
-import { updateTodos } from '../../redux/todosSlice';
+import { addTodo } from '../../redux/todosSlice';
 import { TodoType } from '../../utils/types';
 import { TodoButton } from './Todos.style';
 
@@ -33,7 +33,7 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
 
   const handleAddTodo = () => {
     openModal(false);
-    dispatch(updateTodos(newTodo));
+    dispatch(addTodo(newTodo));
   };
 
   return (

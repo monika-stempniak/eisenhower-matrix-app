@@ -6,4 +6,5 @@ export const THEME = {
   matrix_4: '#BF5748',
   button: '#D8B71F',
   buttonHover: '#D5B41B',
+  draggableBackgroundColor: '#F2FEDC',
 };
