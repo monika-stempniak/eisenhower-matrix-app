@@ -32,10 +32,11 @@ const getTitlePositionStyle = (priority: Priority) => {
 export const LayoutWrapper = styled.main`
   background-color: ${({ theme }) => theme.backgroundColor};
   padding: 40px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 `;
 
 export const LayoutContainer = styled.div`

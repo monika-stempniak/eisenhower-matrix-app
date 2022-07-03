@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+
+import type { RootState } from '../../redux/store';
 import { Priority } from '../../utils/types';
 import { Todo } from '../Todos/Todo';
 
@@ -40,11 +43,17 @@ type TodosProps = {
 };
 
 export const Todos: React.FC<TodosProps> = ({ priority }) => {
+  const todos = useSelector((state: RootState) => state.todos.todos);
+
   return (
-    <ul>
-      {TODOS.filter((todo) => todo.priority === priority).map((todo) => (
-        <Todo key={`${todo.priority}-${todo.title}`} todo={todo} />
-      ))}
-    </ul>
+    <div style={{ height: '100%', overflowY: 'auto' }}>
+      <ul>
+        {[...TODOS, ...todos]
+          .filter((todo) => todo.priority === priority)
+          .map((todo) => (
+            <Todo key={`${todo.priority}-${todo.title}`} todo={todo} />
+          ))}
+      </ul>
+    </div>
   );
 };
