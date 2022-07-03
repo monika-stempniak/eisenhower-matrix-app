@@ -14,9 +14,9 @@ export const TodoWrapper = styled.div<{
   ${(props) =>
     props.isDragging &&
     css`
-      background: ${({ theme }) => theme[`matrix_${props.priority}`]};
+      background: ${({ theme }) => theme.lightBeige};
       border-radius: 5px;
-      padding-left: 10px;
+      padding-left: 5px;
     `}
 `;
 
@@ -53,6 +53,10 @@ export const TodoButton = styled(Form.Button)`
       background-color: ${({ theme }) => theme.buttonHover};
     }
   }
+`;
+
+export const DatePickerContainer = styled.div`
+  margin-bottom: 1em;
 `;
 
 export const DeleteIcon = styled.button`

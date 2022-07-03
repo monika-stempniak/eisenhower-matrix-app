@@ -30,7 +30,7 @@ const getTitlePositionStyle = (priority: Priority) => {
 };
 
 export const LayoutWrapper = styled.main`
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.light};
   padding: 40px;
   height: calc(100vh - 40px);
   display: flex;

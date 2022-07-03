@@ -31,7 +31,7 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
       {deadline &&
         (priority === Priority.UrgentImportant ||
           priority === Priority.UrgentNotImportant) && (
-          <TodoDate>deadline: {deadline.toDateString()}</TodoDate>
+          <TodoDate>deadline: {deadline}</TodoDate>
         )}
       <TodoText>{comment}</TodoText>
     </TodoContainer>

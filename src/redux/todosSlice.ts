@@ -9,35 +9,35 @@ const MOCKED_TODOS = [
     title: 'urgent',
     comment:
       'Lorem ipsum at erat pellentesque adipiscing commodo elit at imperdiet dui accumsan',
-    deadline: new Date(),
+    deadline: '25 listopad 2022',
   },
   {
     id: '2ab',
     priority: 2,
     title: 'important',
     comment: '',
-    deadline: new Date(),
+    deadline: '',
   },
   {
     id: '2ac',
     priority: 1,
     title: 'urgent...',
     comment: 'Lorem ipsum elit scelerisque mauris pellentesque pulvinar',
-    deadline: undefined,
+    deadline: '',
   },
   {
     id: '4ad',
     priority: 3,
     title: 'not-important',
     comment: 'Lorem ipsum phasellus faucibus scelerisque',
-    deadline: new Date(),
+    deadline: '',
   },
   {
     id: '5ae',
     priority: 4,
     title: 'not-urgent',
     comment: 'Lorem ipsum...',
-    deadline: new Date(),
+    deadline: '',
   },
 ];
 

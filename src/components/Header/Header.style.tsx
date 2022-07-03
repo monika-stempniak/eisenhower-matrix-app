@@ -1,11 +1,10 @@
-import { Modal } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
   height: 40px;
   display: flex;
   justify-content: flex-end;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.lightBeige};
   border-bottom: 1px solid #000;
 `;
 
@@ -27,11 +26,5 @@ export const HeaderItem = styled.div`
     position: absolute;
     top: 7px;
     left: 0px;
-  }
-`;
-
-export const HeaderModal = styled(Modal)`
-  & i.close.icon {
-    padding: 0;
   }
 `;

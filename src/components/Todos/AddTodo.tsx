@@ -1,16 +1,20 @@
 import React, { useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'semantic-ui-react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import format from 'date-fns/format';
 
 import { addTodo } from '../../redux/todosSlice';
 import { TodoType } from '../../utils/types';
-import { TodoButton } from './Todos.style';
+import { DatePickerContainer, TodoButton } from './Todos.style';
+import { DATE_FORMAT } from '../../utils/constants';
 
 const defaultTodo = {
   priority: 1,
   title: '',
   comment: '',
-  deadline: undefined,
+  deadline: '',
 };
 
 type AddTodoProps = {
@@ -25,9 +29,18 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setNewTodo((prevTodo) => ({
       ...prevTodo,
-      [e.target.name]: e.target.value,
+      [name]: name === 'priority' ? Number(value) : value,
+    }));
+  };
+
+  const handleDateChange = (date: Date) => {
+    console.log(date);
+    setNewTodo((prevTodo) => ({
+      ...prevTodo,
+      deadline: format(date, DATE_FORMAT),
     }));
   };
 
@@ -64,7 +77,16 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
         value={newTodo.comment}
         onChange={handleChange}
       />
-      <div>Date Placeholder</div>
+      <DatePickerContainer>
+        <DatePicker
+          name="deadline"
+          selected={newTodo.deadline ? new Date(newTodo.deadline) : undefined}
+          onChange={handleDateChange}
+          popperPlacement="top"
+          showTimeSelect
+          dateFormat={DATE_FORMAT}
+        />
+      </DatePickerContainer>
       <TodoButton onClick={handleAddTodo}>Add Todo</TodoButton>
     </Form>
   );

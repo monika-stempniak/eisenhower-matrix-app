@@ -10,5 +10,5 @@ export type TodoType = {
   priority: Priority;
   title: string;
   comment?: string;
-  deadline?: Date;
+  deadline?: string;
 };
