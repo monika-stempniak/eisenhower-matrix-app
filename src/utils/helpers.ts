@@ -47,15 +47,27 @@ export const reorderDndMultiColumn = (
 };
 
 export const validateErrors = (todo: TodoType) => {
-  const errors: Record<string, string> = {};
+  const priorityError = validatePriorityError(todo.priority);
+  const titleError = validateTitleError(todo.title);
 
-  if (todo.priority < 1) {
-    errors.priority = 'Priority is required';
+  return {
+    ...(priorityError && { priority: priorityError }),
+    ...(titleError && { title: titleError }),
+  };
+};
+
+export const validatePriorityError = (value: number) => {
+  if (value < 1) {
+    return 'Priority is required';
   }
 
-  if (todo.title === '') {
-    errors.title = 'Title is required';
+  return '';
+};
+
+export const validateTitleError = (value: string) => {
+  if (value === '') {
+    return 'Title is required';
   }
 
-  return errors;
+  return '';
 };

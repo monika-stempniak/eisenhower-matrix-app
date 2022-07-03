@@ -1,5 +1,7 @@
 import { Priority } from './types';
 
+export const DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
+
 export const MATRIX_SETTINGS = [
   {
     priority: Priority.UrgentImportant,
@@ -19,4 +21,25 @@ export const MATRIX_SETTINGS = [
   },
 ];
 
-export const DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss';
+export const PRIORITY_OPTIONS = [
+  {
+    text: 'urgent and important',
+    key: Priority.UrgentImportant,
+    value: Priority.UrgentImportant,
+  },
+  {
+    text: 'not urgent but important',
+    key: Priority.NotUrgentImportant,
+    value: Priority.NotUrgentImportant,
+  },
+  {
+    text: 'urgent but not important',
+    key: Priority.UrgentNotImportant,
+    value: Priority.UrgentNotImportant,
+  },
+  {
+    text: 'not urgent and not important',
+    key: Priority.NotUrgentNotImportant,
+    value: Priority.NotUrgentNotImportant,
+  },
+];

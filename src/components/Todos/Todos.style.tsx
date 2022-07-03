@@ -3,8 +3,8 @@ import { Form } from 'semantic-ui-react';
 import { Priority } from '../../utils/types';
 
 export const TodosContainer = styled.div`
-  height: '100%';
-  overflowy: 'auto';
+  height: 100%;
+  overflow-y: auto;
 `;
 
 export const TodoWrapper = styled.div<{

@@ -1,6 +1,6 @@
-import React, { useCallback, useId, useState } from 'react';
+import React, { SyntheticEvent, useCallback, useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Form, Message } from 'semantic-ui-react';
+import { DropdownProps, Form, Message } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import format from 'date-fns/format';
@@ -8,12 +8,16 @@ import format from 'date-fns/format';
 import { addTodo } from '../../redux/todosSlice';
 import { TodoType } from '../../utils/types';
 import { DatePickerContainer, TodoButton } from './Todos.style';
-import { DATE_FORMAT } from '../../utils/constants';
-import { validateErrors } from '../../utils/helpers';
+import { DATE_FORMAT, PRIORITY_OPTIONS } from '../../utils/constants';
+import {
+  validateErrors,
+  validatePriorityError,
+  validateTitleError,
+} from '../../utils/helpers';
 
 const defaultTodo: TodoType = {
   id: '',
-  priority: 1,
+  priority: 0,
   title: '',
   comment: '',
   deadline: '',
@@ -40,15 +44,34 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
       const todo = {
         ...prevTodo,
         [name]:
-          name === 'priority'
-            ? Number(value)
-            : name === 'labels'
+          name === 'labels'
             ? value.split(',').map((val) => val.trim().toLowerCase())
             : value,
       };
 
-      const errorObj = validateErrors(todo);
-      setErrors(errorObj);
+      if (name === 'title') {
+        const errorMsg = validateTitleError(value);
+        setErrors({ ...errors, title: errorMsg });
+      }
+
+      return todo;
+    });
+  };
+
+  const handleSelectChange = (
+    _e: SyntheticEvent<HTMLElement, Event>,
+    data: DropdownProps
+  ) => {
+    setNewTodo((prevTodo) => {
+      const todo = {
+        ...prevTodo,
+        priority: Number(data.value),
+      };
+
+      if (data.name === 'priority') {
+        const errorMsg = validatePriorityError(Number(data.value));
+        setErrors({ ...errors, priority: errorMsg });
+      }
 
       return todo;
     });
@@ -71,19 +94,15 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
       openModal(false);
     }
   }, [newTodo, dispatch, openModal]);
-  console.log(errors);
+
   return (
     <Form error>
-      <Form.Input
-        fluid
-        type="number"
-        min="1"
-        max="4"
+      <Form.Select
         label="Priority"
-        placeholder="Priority (1-4)"
+        placeholder="Priority"
         name="priority"
-        value={newTodo.priority}
-        onChange={handleChange}
+        options={PRIORITY_OPTIONS}
+        onChange={handleSelectChange}
         required
       />
       {errors.priority && <Message error content={errors.priority} />}
