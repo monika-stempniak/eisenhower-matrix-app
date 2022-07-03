@@ -6,8 +6,7 @@ import {
   DroppableProvided,
 } from 'react-beautiful-dnd';
 
-import type { RootState } from '../../redux/store';
-import { Priority, TodoType } from '../../utils/types';
+import { Priority } from '../../utils/types';
 import { Todo } from '../Todos/Todo';
 import { TodosContainer, TodoWrapper } from './Todos.style';
 import { selectTodos } from '../../redux/todosSlice';
@@ -37,19 +36,17 @@ export const Todos: React.FC<TodosProps> = ({
             {(
               provided: DraggableProvided,
               snapshot: DraggableStateSnapshot
-            ) => {
-              return (
-                <TodoWrapper
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  isDragging={snapshot.isDragging}
-                  priority={priority}
-                >
-                  <Todo todo={todo} />
-                </TodoWrapper>
-              );
-            }}
+            ) => (
+              <TodoWrapper
+                ref={provided.innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                isDragging={snapshot.isDragging}
+                priority={priority}
+              >
+                <Todo todo={todo} />
+              </TodoWrapper>
+            )}
           </Draggable>
         ))}
         {droppableProvided.placeholder}

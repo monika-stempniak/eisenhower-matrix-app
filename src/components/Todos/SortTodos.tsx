@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CheckboxProps, Form } from 'semantic-ui-react';
 
@@ -47,13 +47,13 @@ export const SortTodos: React.FC<SortTodosProps> = ({ openModal }) => {
     }
   };
 
-  const handleSort = () => {
+  const handleSort = useCallback(() => {
     const selectedItems = Object.entries(selectedLabels)
       .filter(([, val]) => val === true)
       .map(([key]) => key);
     dispatch(updateActiveLabels(selectedItems));
     openModal(false);
-  };
+  }, [selectedLabels, dispatch, openModal]);
 
   return (
     <Form>

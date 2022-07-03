@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react';
+import React, { useCallback, useId, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
@@ -44,12 +44,12 @@ export const AddTodo: React.FC<AddTodoProps> = ({ openModal }) => {
     }));
   };
 
-  const handleAddTodo = () => {
+  const handleAddTodo = useCallback(() => {
     const labels = newTodo.labels ?? [];
     const uniqLabels = new Set(...labels);
     dispatch(addTodo({ ...newTodo, labels: Array.from(uniqLabels) }));
     openModal(false);
-  };
+  }, [newTodo, dispatch, openModal]);
 
   return (
     <Form>

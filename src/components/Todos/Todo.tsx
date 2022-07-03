@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodo } from '../../redux/todosSlice';
 
@@ -17,7 +18,7 @@ type TodoProps = {
   todo: TodoType;
 };
 
-export const Todo: React.FC<TodoProps> = ({ todo }) => {
+export const Todo: React.FC<TodoProps> = memo(({ todo }) => {
   const { id, priority, title, comment, deadline, labels } = todo;
 
   const dispatch = useDispatch();
@@ -48,4 +49,4 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
       )}
     </TodoContainer>
   );
-};
+});
