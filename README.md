@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Eisenhower Matrix App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To test the project run in the console:
 
-## Available Scripts
-
-In the project directory, you can run:
+### `npm install`
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Additional questions and answers:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- How could we extend the application? What next features would be great to have?
+  _I would add more statistics, add tests, hightlight deadine tasks if the date it is close to deadline_
+- What way of dealing with delegating and scheduling tasks would you suggest? How to encourage user to
+  stick to the Eisenhower Matrix ideas?
+- How do you keep the priority of tasks on the list? How does the priority behave when we move the task
+  from one quadrant to another?
+  _The priority is updated to the one from the current tile_
+- UI/UX: which libraries do you use? How do you choose the colors, fonts and other solutions?
+  _To generate color palette I used `https://mycolor.space/?hex=%23D5B41B&sub=1` and chose `#D5B41B` as an entry color_
+- How easy would be to reuse this matrix?
+  _I would need to rebuild it a bit, but it's pretty easy to reuse_
