@@ -11,9 +11,10 @@ To test the project run in the console:
 Additional questions and answers:
 
 - How could we extend the application? What next features would be great to have?
-  _I would add more statistics, add tests, hightlight deadine tasks if the date it is close to deadline_
+  _I would add more statistics, hightlight deadine tasks if the date it is close to deadline, add tests, store todos in localStorage/Firebase_
 - What way of dealing with delegating and scheduling tasks would you suggest? How to encourage user to
   stick to the Eisenhower Matrix ideas?
+  _Just test to see how your productivity increase_
 - How do you keep the priority of tasks on the list? How does the priority behave when we move the task
   from one quadrant to another?
   _The priority is updated to the one from the current tile_
